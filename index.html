@@ -1,0 +1,89 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Terminal v2.2.7.3</title>
+    <link rel="stylesheet" href="/styles.css">
+    <!-- Add basic fallback CSS variables -->
+    <style>
+      :root {
+        --bg-color: #000;
+        --text-color: #0f0;
+        --accent-color: #00f;
+        --error-color: #f00;
+        --success-color: #0f0;
+        --warning-color: #f0f;
+        --button-bg: #0f0;
+        --button-text: #000;
+        --border-color: #0f0;
+        --input-bg: #000;
+      }
+    </style>
+    <script type="importmap">
+    {
+        "imports": {
+            "terminal": "/terminal.js",
+            "commands": "/commands.js",
+            "admin": "/admin.js"
+        }
+    }
+    </script>
+</head>
+<body>
+    <div id="console">
+        <p>__  ___ ___ ___ __<br>/_</p>
+        <p>System Terminal v2.2.7.3</p>
+        <p>Welcome to the mainframe.</p>
+        <p>Type "h3n13-3" for command list.</p>
+        <div id="input-line">
+            <span id="prompt">∎</span>
+            <input type="text" id="command-input" autofocus>
+            <button id="execute-btn">ENTER</button>
+        </div>
+    </div>
+
+    <div id="admin-modal">
+        <div class="modal-content">
+            <h3>Admin Management</h3>
+            <div id="admin-tabs">
+                <button class="admin-tab active" data-panel="redirect">Redirects</button>
+                <button class="admin-tab" data-panel="non-redirect">Non-Redirects</button>
+            </div>
+
+            <div id="redirect-panel" class="admin-panel active">
+                <div class="toggle-switch">
+                    <input type="checkbox" id="hidden-toggle">
+                    <label for="hidden-toggle">Hide from Command List</label>
+                </div>
+                <div id="redirect-list"></div>
+                <input type="text" id="modal-key" class="modal-input" placeholder="Command Key">
+                <input type="text" id="modal-url" class="modal-input" placeholder="Redirect URL">
+                <div class="modal-buttons">
+                    <button id="modal-save" class="modal-btn">Save</button>
+                    <button id="modal-cancel" class="modal-btn cancel">Cancel</button>
+                </div>
+            </div>
+
+            <div id="non-redirect-panel" class="admin-panel">
+                <div class="toggle-switch">
+                    <input type="checkbox" id="non-redirect-hidden-toggle">
+                    <label for="non-redirect-hidden-toggle">Hide from Command List</label>
+                </div>
+                <div id="non-redirect-list"></div>
+                <input type="text" id="non-redirect-key" class="modal-input" placeholder="Command Key">
+                <input type="text" id="non-redirect-description" class="modal-input" placeholder="Command Description">
+                <textarea id="non-redirect-function" class="modal-textarea" placeholder="Optional JavaScript function body (e.g., addText('Hello!'))"></textarea>
+                <div class="modal-buttons">
+                    <button id="non-redirect-save" class="modal-btn">Save</button>
+                    <button id="non-redirect-cancel" class="modal-btn cancel">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initTerminal } from 'terminal';
+        initTerminal();
+    </script>
+</body>
+</html>
